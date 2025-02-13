@@ -18,10 +18,6 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override suspend fun getRecipeDetail(recipeId: String): RecipeDetail {
         val recipeDetail = apiService.getRecipeDetail(recipeId)
-        Log.d("RecipeDetail", "ID: ${recipeDetail.id}")
-        Log.d("RecipeDetail", "Description: ${recipeDetail.description}")
-        Log.d("RecipeDetail", "Preparation: ${recipeDetail.preparation}")
-
-        return recipeDetail.toDomain()
+        return recipeDetail?.toDomain() ?: RecipeDetail("0", "", "", emptyList())
     }
 }

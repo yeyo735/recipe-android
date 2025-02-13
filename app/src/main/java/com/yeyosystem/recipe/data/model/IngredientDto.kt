@@ -7,7 +7,7 @@ data class IngredientDto(
     @SerializedName("name") val name: String,
     @SerializedName("quantity") val quantity: String
 ) {
-    fun toModel(): Ingredient {
+    fun toDomain(): Ingredient {
         return Ingredient(
             name = name,
             quantity = quantity

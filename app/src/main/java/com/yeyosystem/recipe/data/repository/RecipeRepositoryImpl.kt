@@ -1,6 +1,5 @@
 package com.yeyosystem.recipe.data.repository
 
-import android.util.Log
 import com.yeyosystem.recipe.domain.model.Recipe
 import com.yeyosystem.recipe.domain.model.RecipeDetail
 import com.yeyosystem.recipe.domain.repository.RecipeRepository

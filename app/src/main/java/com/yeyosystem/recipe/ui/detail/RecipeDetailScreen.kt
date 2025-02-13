@@ -1,9 +1,15 @@
 package com.yeyosystem.recipe.ui.detail
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -11,29 +17,75 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberAsyncImagePainter
+import com.yeyosystem.recipe.domain.model.Recipe
 import com.yeyosystem.recipe.presentation.viewmodel.RecipeViewModel
 
 @Composable
 fun RecipeDetailScreen(
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
+    recipe: Recipe,
     recipeId: String,
     viewModel: RecipeViewModel = hiltViewModel()
 ) {
     val recipeDetail by viewModel.getRecipeDetail(recipeId).observeAsState()
-
-    recipeDetail?.let { detail ->
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = detail.description, style = MaterialTheme.typography.titleMedium)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Ingredientes:", style = MaterialTheme.typography.titleSmall)
-            detail.ingredients.forEach { ingredient ->
-                Text(text = "- ${ingredient.name}: ${ingredient.quantity}", style = MaterialTheme.typography.bodyMedium)
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+    ) {
+        recipe.let {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                Card {
+                    Image(
+                        painter = rememberAsyncImagePainter(it.picture),
+                        contentDescription = it.name,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                    )
+                }
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "Preparación:", style = MaterialTheme.typography.titleSmall)
-            Text(text = detail.preparation)
+
         }
-    } ?: CircularProgressIndicator()
+        recipeDetail?.let { detail ->
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text(detail.description, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(bottom = 16.dp))
+
+                Card {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text("Ingredients:", style = MaterialTheme.typography.titleLarge)
+                        detail.ingredients.forEach { ingredient ->
+                            Text("- ${ingredient.name}: ${ingredient.quantity}")
+                        }
+
+                        Text("Preparation:", style = MaterialTheme.typography.titleLarge)
+                        Text(detail.preparation, modifier = Modifier.padding(bottom = 8.dp))
+                    }
+                }
+            }
+        } ?: CircularProgressIndicator(
+            modifier = Modifier.padding(16.dp),
+            color = MaterialTheme.colorScheme.primary,
+            strokeWidth = 2.dp
+        )
+        recipe.let {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Text("Origin:", style = MaterialTheme.typography.titleLarge)
+                Text(
+                    it.location,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+
+        }
+    }
 }

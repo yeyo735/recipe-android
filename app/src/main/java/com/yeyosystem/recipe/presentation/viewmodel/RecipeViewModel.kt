@@ -21,4 +21,5 @@ class RecipeViewModel @Inject constructor(
     fun getRecipeDetail(recipeId: String) = liveData(Dispatchers.IO) {
         emit(getRecipeDetailUseCase(recipeId))
     }
+
 }

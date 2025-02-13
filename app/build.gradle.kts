@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.play.services.maps)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
@@ -82,6 +83,13 @@ dependencies {
 
     // Gson for JSON parsing
     implementation(libs.gson) // Gson library
+
+    // Google Maps
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps) // Optional Util Library
+    implementation(libs.maps.compose.utils)
+    implementation(libs.maps.compose.widgets) // Optional Accompanist permissions to request permissions in compose
+    implementation(libs.accompanist.permissions)
 
     // Testing
     testImplementation(libs.junit)

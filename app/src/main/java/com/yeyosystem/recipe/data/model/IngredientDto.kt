@@ -5,9 +5,10 @@ import com.yeyosystem.recipe.domain.model.Ingredient
 
 data class IngredientDto(
     @SerializedName("name") val name: String,
-    @SerializedName("quantity") val quantity: String
+    @SerializedName("quantity") val quantity: String,
+    @SerializedName("ingredients") val ingredients: List<IngredientDto>
 ) {
-    fun toModel(): Ingredient {
+    fun toDomain(): Ingredient {
         return Ingredient(
             name = name,
             quantity = quantity

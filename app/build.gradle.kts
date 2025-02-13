@@ -73,12 +73,16 @@ dependencies {
     // Coil for Image Loading
     implementation(libs.coil)
 
-    //ktor for networking
-    implementation(libs.ktor) // Ktor core
-    implementation(libs.ktor.client.gson) // Ktor Gson plugin
-    implementation(libs.ktor.client.cio) // CIO engine for Ktor (if you're using CIO)
-    implementation(libs.ktor.client.content.negotiation)// Ktor content negotiation plugin
-    implementation(libs.ktor.serialization.gson) // Ktor Gson serialization plugin
+    // Serialization
+    implementation(libs.kotlinx.serialization.json)
+
+    //Retrofit for networking
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.retrofit.coroutines)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
 
     // Gson for JSON parsing
     implementation(libs.gson) // Gson library

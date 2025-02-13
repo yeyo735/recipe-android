@@ -91,12 +91,28 @@ dependencies {
     implementation(libs.maps.compose.widgets) // Optional Accompanist permissions to request permissions in compose
     implementation(libs.accompanist.permissions)
 
-    // Testing
+    // Unit Testing
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    // Instrumentation Testing
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // UI test in Compose
+    debugImplementation(libs.ui.test.manifest)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+
+    // Optional: AndroidX Test libraries (for Android-specific testing)
+    testImplementation(libs.androidx.core)
+
+    // Optional: Mockito (for mocking dependencies)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
+
+    testImplementation(libs.androidx.core.testing) // Arch Testing
 }

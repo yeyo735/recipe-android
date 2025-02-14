@@ -29,15 +29,23 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
+    }
+
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["android.app.testing"] = "true"
     }
 }
 
@@ -60,6 +68,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.play.services.maps)
+    testImplementation(libs.hilt.android.testing)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
@@ -115,4 +124,7 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
 
     testImplementation(libs.androidx.core.testing) // Arch Testing
+
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
 }

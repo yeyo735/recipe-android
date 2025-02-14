@@ -94,34 +94,98 @@ Run > Run 'app'
 ```
 
 ---
+## 🧪 Pruebas Unitarias y Automatizadas
+📌 Este proyecto incluye pruebas unitarias y de UI para validar la funcionalidad y navegación de la aplicación.
 
-## 🧪 **Pruebas Unitarias y Automatizadas**
+### ✅ Pruebas Unitarias
 
-### **📌 Tipos de Pruebas Implementadas**
+ViewModel: Verificamos que RecipeViewModel carga correctamente las recetas.
+Repositorios: Probamos la integración de RecipeRepositoryImpl con datos simulados.
+UseCases: Testeamos la lógica de negocio en casos de uso específicos.
 
-✅ **Pruebas Unitarias**
-- **ViewModel:** Verificamos que `RecipeViewModel` carga correctamente las recetas.
-- **Repositorios:** Probamos la integración de `RecipeRepositoryImpl` con datos simulados.
-- **UseCases:** Testeamos la lógica de negocio en casos de uso específicos.
+### ✅ Pruebas de UI con Compose Testing
 
-✅ **Pruebas de UI con Compose Testing**
-- Validamos que `RecipeHomeScreen` muestra correctamente la lista de recetas.
-- Probamos la navegación entre `RecipeHomeScreen` y `RecipeDetailScreen`.
-- Verificamos que los tabs en `RecipeDetailTabScreen` funcionan correctamente.
+Validamos que RecipeHomeScreen muestra correctamente la lista de recetas.
+Probamos la navegación entre RecipeHomeScreen y RecipeDetailScreen.
+Verificamos que los tabs en RecipeDetailTabScreen funcionan correctamente.
 
-✅ **Pruebas End-to-End (E2E) con Espresso y Compose UI Test**
-- Simulamos una interacción completa desde la lista hasta los detalles de la receta.
-- Probamos la integración de `Google Maps` y el marcador de ubicación.
+### ✅ Pruebas End-to-End (E2E) con Espresso y Compose UI Test
 
-### **📌 Comandos para Ejecutar las Pruebas**
+Simulamos una interacción completa desde la lista hasta los detalles de la receta.
+Probamos la integración de Google Maps y el marcador de ubicación.
+🔧 Configuración de Tests con Hilt
+📌 Para ejecutar pruebas instrumentadas con Hilt, es necesario configurar correctamente el AndroidManifest.xml de androidTest.
 
-Ejecutar **pruebas unitarias**:
-```bash
+### 1️⃣ Crear o modificar el archivo src/androidTest/AndroidManifest.xml
+
+``` bash xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:name="dagger.hilt.android.testing.HiltTestApplication" />
+</manifest>
+```
+
+### 2️⃣ Asegurar que RecipeApplication extiende HiltAndroidApp
+
+``` kotlin
+@HiltAndroidApp
+class RecipeApplication : Application()
+```
+
+### 3️⃣ Agregar el testInstrumentationRunner en build.gradle.kts
+
+``` kotlin
+android {
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["android.app.testing"] = "true"
+    }
+}
+```
+
+### 4️⃣ Agregar las dependencias necesarias para pruebas con Hilt
+
+``` kotlin
+androidTestImplementation("com.google.dagger:hilt-android-testing:2.51.1")
+kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.51.1")
+```
+### 5️⃣ Asegurar que los tests usan HiltAndroidRule
+
+``` kotlin
+@HiltAndroidTest
+class RecipeNavigationTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
+    @get:Rule
+    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+
+    @Before
+    fun init() {
+        hiltRule.inject()
+    }
+
+    @Test
+    fun testNavigationToDetailScreen() {
+        onView(withText("Recipe App")).check(matches(isDisplayed()))
+        onView(withText("Pasta")).perform(click()) // Simula clic en receta
+        onView(withText("Description:")).check(matches(isDisplayed()))
+    }
+}
+```
+
+### 📌 Comandos para Ejecutar las Pruebas
+
+- Ejecutar pruebas unitarias:
+
+```
 ./gradlew test
 ```
 
-Ejecutar **pruebas UI e instrumentadas**:
-```bash
+- Ejecutar pruebas UI e instrumentadas:
+
+```
 ./gradlew connectedAndroidTest
 ```
 

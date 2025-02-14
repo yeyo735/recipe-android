@@ -26,7 +26,7 @@ fun RecipeApp(navController: NavHostController) {
             Row(modifier = Modifier.fillMaxSize()) {
                 val localNavController = rememberNavController()
                 Box(modifier = Modifier
-                    .weight(1f)
+                    .weight(2f)
                     .fillMaxHeight()
                     .padding(vertical = 8.dp)) {
                     RecipeHomeScreen(
@@ -40,7 +40,7 @@ fun RecipeApp(navController: NavHostController) {
                     )
                 }
                 Box(modifier = Modifier
-                    .weight(2f)
+                    .weight(3f)
                     .fillMaxHeight()
                     .padding(vertical = 8.dp)) {
                     NavHost(

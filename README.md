@@ -77,7 +77,7 @@ RecipeApp es una aplicación Android desarrollada en **Kotlin** que permite a lo
 
 ### **📌 Instalación**
 ```bash
-git clone https://github.com/tu-usuario/RecipeApp.git
+git clone https://github.com/yeyo735/recipe-android.git
 cd RecipeApp
 gradlew build
 ```

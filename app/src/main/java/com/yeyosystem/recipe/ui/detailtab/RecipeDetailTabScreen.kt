@@ -18,7 +18,7 @@ fun RecipeDetailTabScreen(modifier: Modifier, recipe: Recipe, recipeId: String?)
     Scaffold(
         topBar = { RecipeAppBar(title = recipe.name) }
     ) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues)) {
+        Column(modifier = Modifier.padding(paddingValues).fillMaxWidth().fillMaxHeight()) {
             TabRow(selectedTabIndex = selectedTabIndex) {
                 Tab(selected = selectedTabIndex == 0, onClick = { selectedTabIndex = 0 }) {
                     Text("Detail", modifier = Modifier.padding(16.dp))

@@ -24,22 +24,43 @@ fun RecipeApp(navController: NavHostController) {
         if (isTablet) {
             val recipeIdDetail = remember { mutableIntStateOf(0) }
             Row(modifier = Modifier.fillMaxSize()) {
-                RecipeHomeScreen(
-                    modifier = Modifier.weight(1f),
-                    onRecipeSelected = { recipeId ->
-                        recipe = selectedRecipe?.find { it.id==recipeId }
-                        navController.navigate("detail/$recipeId")
-                        recipeIdDetail.value = recipeId.toInt()
-                    }
-                )
-
-                recipe?.let { recipe ->
-                    RecipeDetailTabScreen(
-                        modifier = Modifier.weight(2f),
-                        recipe = recipe,
-                        recipeId = recipe.id
+                val localNavController = rememberNavController()
+                Box(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .padding(vertical = 8.dp)) {
+                    RecipeHomeScreen(
+                        modifier = Modifier
+                            .fillMaxHeight(),
+                        onRecipeSelected = { recipeId ->
+                            recipe = selectedRecipe?.find { it.id == recipeId }
+                            recipeIdDetail.intValue = recipeId.toInt()
+                            localNavController.navigate("detail/$recipeId")
+                        }
                     )
-                } ?: CircularProgressIndicator()
+                }
+                Box(modifier = Modifier
+                    .weight(2f)
+                    .fillMaxHeight()
+                    .padding(vertical = 8.dp)) {
+                    NavHost(
+                        localNavController,
+                        startDestination = "detail/${recipeIdDetail.intValue}"
+                    ) {
+                        composable("detail/{recipeId}") { backStackEntry ->
+                            val recipeId =
+                                backStackEntry.arguments?.getString("recipeId") ?: return@composable
+
+                            recipe?.let { recipe ->
+                                RecipeDetailTabScreen(
+                                    modifier = Modifier,
+                                    recipe = recipe,
+                                    recipeId = recipeId
+                                )
+                            } ?: CircularProgressIndicator()
+                        }
+                    }
+                }
             }
         } else {
             NavHost(navController, startDestination = "home") {
@@ -54,9 +75,10 @@ fun RecipeApp(navController: NavHostController) {
                 }
 
                 composable("detail/{recipeId}") { backStackEntry ->
-                    val recipeId = backStackEntry.arguments?.getString("recipeId") ?: return@composable
+                    val recipeId =
+                        backStackEntry.arguments?.getString("recipeId") ?: return@composable
 
-                    selectedRecipe?.find { it.id==recipeId }?.let { recipe ->
+                    selectedRecipe?.find { it.id == recipeId }?.let { recipe ->
                         RecipeDetailTabScreen(
                             modifier = Modifier,
                             recipe = recipe,

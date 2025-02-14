@@ -15,13 +15,18 @@ RecipeApp es una aplicación Android desarrollada en **Kotlin** que permite a lo
 - **Ktor** → Cliente HTTP liviano y eficiente para llamadas API.
 - **Google Maps** → Integración con mapas y geolocalización.
 
+## 🚀 Aprendizajes y Alternativas
+- 💡 Este proyecto representa mi primera experiencia con Jetpack Compose y Ktor. Aunque nunca había trabajado con estas tecnologías, logré implementarlas de manera efectiva siguiendo buenas prácticas y principios de arquitectura moderna.
+- 🔄 Además, existe una rama alternativa donde el cliente de red se implementa con Retrofit en lugar de Ktor. Este cambio debe hacerse con cuidado, asegurando que las dependencias y el flujo de datos se mantengan consistentes.
+- 🔑 Esta aplicación no incluye una API Key de Google Maps por defecto. Para habilitar la funcionalidad de mapas, solo necesita agregar su propia clave en el archivo strings.xml, en el campo reservado para este propósito.
+
 ### 🔹 **Arquitectura**
 - **MVVM (Model-View-ViewModel)** → Separación clara de responsabilidades.
 - **Clean Architecture** → Código modular y mantenible.
 
 ### 🔹 **Otras Librerías**
 - **Coil** → Carga optimizada de imágenes.
-- **MockK** → Pruebas unitarias con mockeo de datos.
+- **Mockito** → Pruebas unitarias con mockeo de datos.
 - **Compose Navigation** → Manejo de rutas y pantallas.
 - **JUnit & Espresso** → Pruebas automatizadas.
 
@@ -122,8 +127,8 @@ Ejecutar **pruebas UI e instrumentadas**:
 
 ---
 
-## 👨‍💻 **Autores**
-- **[Tu Nombre]** - Desarrollador Android Senior 📱
+## 👨‍💻 **Autor**
+- **Sergio Miranda** - Desarrollador Android Senior 📱
 
 Si tienes alguna pregunta o sugerencia, ¡abre un issue o PR! 🚀
 

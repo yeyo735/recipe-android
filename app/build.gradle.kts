@@ -60,6 +60,12 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    // Adpative Compose
+    implementation(libs.androidx.material3.adaptive.navigation.suite)
+    implementation(libs.androidx.adaptive)
+    implementation(libs.androidx.adaptive.layout)
+    implementation(libs.androidx.adaptive.navigation)
+
     // Hilt for Dependency Injection
     implementation(libs.hilt.android)
     implementation(libs.androidx.appcompat)
@@ -68,6 +74,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.runtime.livedata)
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.foundation.layout.android)
     testImplementation(libs.hilt.android.testing)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)

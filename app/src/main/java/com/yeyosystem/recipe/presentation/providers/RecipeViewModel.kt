@@ -1,4 +1,4 @@
-package com.yeyosystem.recipe.presentation.viewmodel
+package com.yeyosystem.recipe.presentation.providers
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

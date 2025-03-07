@@ -1,4 +1,4 @@
-package com.yeyosystem.recipe.ui.appbar
+package com.yeyosystem.recipe.presentation.ui.appbar
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

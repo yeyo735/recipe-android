@@ -30,7 +30,7 @@ class RecipeNavigationTest {
     @Test
     fun testNavigationToDetailScreen() {
         onView(withText("Recipe App")).check(matches(isDisplayed()))
-        onView(withText("Pasta")).perform(click()) // Simula clic en receta
+        onView(withText("Spaghetti Carbonara")).perform(click())
         onView(withText("Description:")).check(matches(isDisplayed()))
     }
 }

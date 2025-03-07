@@ -1,4 +1,4 @@
-package com.yeyosystem.recipe.ui.home
+package com.yeyosystem.recipe.presentation.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -33,8 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.yeyosystem.recipe.domain.model.Recipe
-import com.yeyosystem.recipe.presentation.viewmodel.RecipeViewModel
-import com.yeyosystem.recipe.ui.appbar.RecipeAppBar
+import com.yeyosystem.recipe.presentation.ui.appbar.RecipeAppBar
+import com.yeyosystem.recipe.presentation.providers.RecipeViewModel
 
 @Composable
 fun RecipeHomeScreen(
@@ -85,7 +85,7 @@ fun SearchBar(query: String, onQueryChange: (String) -> Unit) {
 }
 
 @Composable
-fun RecipeItem(recipe: com.yeyosystem.recipe.domain.model.Recipe, onClick: () -> Unit) {
+fun RecipeItem(recipe: Recipe, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

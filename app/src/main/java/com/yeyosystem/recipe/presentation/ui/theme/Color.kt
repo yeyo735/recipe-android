@@ -1,4 +1,4 @@
-package com.yeyosystem.recipe.ui.theme
+package com.yeyosystem.recipe.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

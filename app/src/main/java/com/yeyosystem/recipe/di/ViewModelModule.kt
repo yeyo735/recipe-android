@@ -2,7 +2,7 @@ package com.yeyosystem.recipe.di
 
 import com.yeyosystem.recipe.domain.usecase.GetRecipeDetailUseCase
 import com.yeyosystem.recipe.domain.usecase.GetRecipesUseCase
-import com.yeyosystem.recipe.presentation.viewmodel.RecipeViewModel
+import com.yeyosystem.recipe.presentation.providers.RecipeViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

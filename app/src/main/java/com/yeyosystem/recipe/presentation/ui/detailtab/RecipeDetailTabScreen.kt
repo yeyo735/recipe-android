@@ -1,4 +1,4 @@
-package com.yeyosystem.recipe.ui.detailtab
+package com.yeyosystem.recipe.presentation.ui.detailtab
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -6,9 +6,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.yeyosystem.recipe.domain.model.Recipe
-import com.yeyosystem.recipe.ui.appbar.RecipeAppBar
-import com.yeyosystem.recipe.ui.detail.RecipeDetailScreen
-import com.yeyosystem.recipe.ui.map.RecipeMapScreen
+import com.yeyosystem.recipe.presentation.ui.appbar.RecipeAppBar
+import com.yeyosystem.recipe.presentation.ui.detail.RecipeDetailScreen
+import com.yeyosystem.recipe.presentation.ui.map.RecipeMapScreen
 
 
 @Composable
@@ -18,19 +18,19 @@ fun RecipeDetailTabScreen(modifier: Modifier, recipe: Recipe, recipeId: String?)
     Scaffold(
         topBar = { RecipeAppBar(title = recipe.name) }
     ) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues).fillMaxWidth().fillMaxHeight()) {
+        Column(modifier = modifier.padding(paddingValues).fillMaxWidth().fillMaxHeight()) {
             TabRow(selectedTabIndex = selectedTabIndex) {
                 Tab(selected = selectedTabIndex == 0, onClick = { selectedTabIndex = 0 }) {
-                    Text("Detail", modifier = Modifier.padding(16.dp))
+                    Text("Detail", modifier = modifier.padding(16.dp))
                 }
                 Tab(selected = selectedTabIndex == 1, onClick = { selectedTabIndex = 1 }) {
-                    Text("Map", modifier = Modifier.padding(16.dp))
+                    Text("Map", modifier = modifier.padding(16.dp))
                 }
             }
 
             when (selectedTabIndex) {
                 0 -> if (recipeId != null) {
-                        RecipeDetailScreen(modifier = Modifier, recipe = recipe, recipeId = recipeId)
+                    RecipeDetailScreen(modifier = modifier, recipe = recipe, recipeId = recipeId)
 
                 }
                 1 -> RecipeMapScreen(recipe)

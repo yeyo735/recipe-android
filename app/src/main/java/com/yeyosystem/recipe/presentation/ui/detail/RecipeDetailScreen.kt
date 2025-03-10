@@ -1,7 +1,6 @@
-package com.yeyosystem.recipe.ui.detail
+package com.yeyosystem.recipe.presentation.ui.detail
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,12 +16,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.yeyosystem.recipe.domain.model.Recipe
-import com.yeyosystem.recipe.presentation.viewmodel.RecipeViewModel
+import com.yeyosystem.recipe.presentation.providers.RecipeViewModel
 
 @Composable
 fun RecipeDetailScreen(
@@ -33,13 +31,13 @@ fun RecipeDetailScreen(
 ) {
     val recipeDetail by viewModel.getRecipeDetail(recipeId).observeAsState()
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
         recipe.let {
             Column(
-                modifier = Modifier
+                modifier = modifier
                     .fillMaxSize()
                     .padding(16.dp)
             ) {
@@ -47,7 +45,7 @@ fun RecipeDetailScreen(
                     Image(
                         painter = rememberAsyncImagePainter(it.picture),
                         contentDescription = it.name,
-                        modifier = Modifier
+                        modifier = modifier
                             .fillMaxWidth()
                             .height(200.dp)
                     )

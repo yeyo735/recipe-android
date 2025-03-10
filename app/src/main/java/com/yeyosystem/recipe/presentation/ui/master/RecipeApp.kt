@@ -1,5 +1,6 @@
-package com.yeyosystem.recipe.ui.master
+package com.yeyosystem.recipe.presentation.ui.master
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.*
@@ -10,10 +11,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import com.yeyosystem.recipe.domain.model.Recipe
-import com.yeyosystem.recipe.presentation.viewmodel.RecipeViewModel
-import com.yeyosystem.recipe.ui.detailtab.RecipeDetailTabScreen
-import com.yeyosystem.recipe.ui.home.RecipeHomeScreen
+import com.yeyosystem.recipe.presentation.providers.RecipeViewModel
+import com.yeyosystem.recipe.presentation.ui.detailtab.RecipeDetailTabScreen
+import com.yeyosystem.recipe.presentation.ui.home.RecipeHomeScreen
 
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun RecipeApp(navController: NavHostController) {
     BoxWithConstraints(modifier = Modifier.fillMaxSize()) {

@@ -1,4 +1,4 @@
-package com.yeyosystem.recipe.ui.map
+package com.yeyosystem.recipe.presentation.ui.map
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,9 +15,9 @@ import com.yeyosystem.recipe.domain.model.Recipe
 @Composable
 fun RecipeMapScreen(recipe: Recipe) {
     Box(modifier = Modifier.fillMaxSize()) {
-        val hydePark = LatLng(recipe.latitude, recipe.longitude)
+        val marker = LatLng(recipe.latitude, recipe.longitude)
         val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(hydePark, 10f)
+            position = CameraPosition.fromLatLngZoom(marker, 10f)
         }
         GoogleMap(
             modifier = Modifier.fillMaxSize(),
@@ -25,7 +25,7 @@ fun RecipeMapScreen(recipe: Recipe) {
             onMapClick = { /* handle map click */ }
         ) {
             Marker(
-                state = rememberMarkerState(position = hydePark),
+                state = rememberMarkerState(position = marker),
                 title = recipe.name
             )
         }

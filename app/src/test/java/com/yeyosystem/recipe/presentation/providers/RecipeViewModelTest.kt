@@ -4,7 +4,7 @@ import com.yeyosystem.recipe.domain.model.Recipe
 import com.yeyosystem.recipe.domain.model.RecipeDetail
 import com.yeyosystem.recipe.domain.usecase.GetRecipeDetailUseCase
 import com.yeyosystem.recipe.domain.usecase.GetRecipesUseCase
-import com.yeyosystem.recipe.presentation.viewmodel.RecipeViewModel
+import com.yeyosystem.recipe.presentation.providers.RecipeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
